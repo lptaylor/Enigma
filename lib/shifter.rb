@@ -3,7 +3,7 @@ require './lib/offset'
 require 'date'
 
 class Shifter
-  attr_reader :shift_array,:key_array, :offset_array
+  attr_reader :shift_array,
 
   def initialize(date = Date.today.strftime('%d%m%y'))
     @date = date
