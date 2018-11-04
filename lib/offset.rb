@@ -3,7 +3,7 @@ require 'date'
 class Offset
   attr_reader :date, :offset_array
 
-  def initialize(date = Date.today.strftime('%d%m%y'))
+  def initialize(date)
     @date = date
     @offset_array = Array.new
   end
