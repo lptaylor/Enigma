@@ -1,7 +1,5 @@
-require 'date'
-
 class Offset
-  attr_reader :date, :offset_array
+  attr_reader :offset_array, :date
 
   def initialize(date)
     @date = date
