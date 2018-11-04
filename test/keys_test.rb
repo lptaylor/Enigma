@@ -16,7 +16,8 @@ class KeyTest < Minitest::Test
     key = Key.new
     key.generate
 
-    assert_instance_of Fixnum, key_array[0]
+    assert_instance_of Integer, key.key_array[0]
+    assert_instance_of Integer, key.key_array[4]
   end
 
 end
