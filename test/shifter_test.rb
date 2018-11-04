@@ -12,4 +12,22 @@ class ShifterTest < Minitest::Test
     assert_instance_of Shifter, shifter
   end
 
+  def test_it_can_pass_a_date_and_get_offset
+    shifter = Shifter.new("030918")
+
+    assert_equal [], shifter.offset
+  end
+
+  def test_if_can_calculate_shift_via_offset_and_key_with_date
+    shifter = Shifter.new("030918")
+
+    assert_equal [], shifter.shift_array
+  end
+
+  def test_if_can_calculate_shift_without_supplied_date
+    shifter = Shifter.new
+
+    assert_equal [], shifter.shift_array
+  end
+
 end
