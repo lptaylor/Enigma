@@ -12,18 +12,20 @@ class Shifter
     @shift_array = Array.new
   end
 
-  def get_shift_array
-    offset = Offset.new(@date)
-    offset.generate
-    offsets = offset.offset_array
-    combined_array = keys.zip(offsets)
-    @shift_array = combined_array.map {|nums| nums.sum}
-  end
-
   def get_key_array
     key = Key.new
     key.generate
-    keys = key.key_array
+    @key_array = key.key_array
   end
 
+  def get_offset_array
+    offset = Offset.new(@date)
+    offset.generate
+    @offsets_array = offset.offset_array
+  end
+
+  def get_shift_array
+    combined_array = @key_array.zip(@offset_array)
+    @shift_array = combined_array.map {|nums| nums.sum}
+  end
 end
