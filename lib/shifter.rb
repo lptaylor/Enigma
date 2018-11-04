@@ -3,7 +3,7 @@ require './lib/offset'
 require 'date'
 
 class Shifter
-  attr_reader :shift_array
+  attr_reader :shift_array,:key_array, :offset_array
 
   def initialize(date = Date.today.strftime('%d%m%y'))
     @date = date
@@ -21,10 +21,12 @@ class Shifter
   def get_offset_array
     offset = Offset.new(@date)
     offset.generate
-    @offsets_array = offset.offset_array
+    @offset_array = offset.offset_array
   end
 
   def get_shift_array
+    get_key_array
+    get_offset_array
     combined_array = @key_array.zip(@offset_array)
     @shift_array = combined_array.map {|nums| nums.sum}
   end

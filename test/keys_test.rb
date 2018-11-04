@@ -12,7 +12,7 @@ class KeyTest < Minitest::Test
     assert_instance_of Key, key
   end
 
-  def test_it_has_a_class_method_that_will_generate_a_number
+  def test_it_has_a_method_that_will_generate_a_number
     key = Key.new
     key.generate
 

@@ -16,14 +16,13 @@ class ShifterTest < Minitest::Test
     shifter = Shifter.new("030918")
     shifter.get_shift_array
 
-    assert_equal [], shifter.shift_array
+    assert_equal 4, shifter.shift_array.length
   end
 
   def test_if_can_calculate_shift_without_supplied_date
     shifter = Shifter.new
     shifter.get_shift_array
 
-    assert_equal [], shifter.shift_array
+    assert_equal 4, shifter.shift_array.length
   end
-
 end
