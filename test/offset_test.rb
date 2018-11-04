@@ -12,7 +12,7 @@ class OffsetTest < Minitest::Test
 
   def test_it_can_take_in_a_date
     offset = Offset.new("041118")
-
+    require 'pry';binding.pry
     assert_equal "041118", offset.date
   end
 
