@@ -20,6 +20,4 @@ class KeyTest < Minitest::Test
     assert_instance_of Integer, key.key_array[3]
   end
 
-
-
 end
