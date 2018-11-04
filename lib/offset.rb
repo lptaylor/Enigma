@@ -14,7 +14,9 @@ class Offset
   end
 
   def generate
-    @offset_array = get_squared_array[-4..-1]
+    @offset_array = get_squared_array[-4..-1].map do |num|
+      num.to_i
+    end
   end
 
 

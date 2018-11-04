@@ -11,21 +11,21 @@ class OffsetTest < Minitest::Test
   end
 
   def test_it_can_take_in_a_date
-    offset = Offset.new("041118")
+    offset = Offset.new("041018")
 
-    assert_equal "041118", offset.date
+    assert_equal "041018", offset.date
   end
 
   def test_it_defalts_to_todays_date
     offset = Offset.new
 
-    assert_equal "031118", offset.date
+    assert_equal Date.today.strftime('%d%m%y'), offset.date
   end
 
   def test_it_can_generate_the_offset
-    offset = Offset.new
+    offset = Offset.new("041018")
     offset.generate
-    
-    assert_equal 0, offset.offset_array
+
+    assert_equal [6,3,2,4], offset.offset_array
   end
 end
