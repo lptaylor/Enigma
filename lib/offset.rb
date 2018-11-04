@@ -12,9 +12,9 @@ class Offset
     squared_number = (date.to_i**2)
     squared_number.to_s.split(//)
   end
-  
+
   def generate
-    get_squared_array[-4..-1]
+    @offset_array = get_squared_array[-4..-1]
   end
 
 
