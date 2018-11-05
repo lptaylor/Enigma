@@ -2,7 +2,7 @@ require 'date'
 require './lib/shifter'
 
 class Enigma
-  attr_reader :encrypted_message
+  attr_reader :encrypted_message, :decrypted_message
 
   def initialize
     @shift_array = Array.new
@@ -18,13 +18,24 @@ class Enigma
     combined_array = message_indexed.zip(@shift_array.cycle)
     clean_combined_array(combined_array)
     summed_indexs = sum_combined_array(combined_array)
-    @encrypted_message = remap_array_to_message(summed_indexs).join.downcase
+    @encrypted_message = remap_array_to_message(summed_indexs).join
+  end
+
+  def decrypt(message, key, date)
+    shifter = Shifter.new(key, date)
+    shift_array = shifter.get_shift_array
+    @shift_array = negative_array(shift_array)
+    message_indexed = assign_index_for_message(message)
+    combined_array = message_indexed.zip(@shift_array.cycle)
+    clean_combined_array(combined_array)
+    summed_indexs = sum_combined_array(combined_array)
+    @decrypted_message = remap_array_to_message(summed_indexs).join
   end
 
   def assign_index_for_message(message)
-    message.chars.map do |letter|
+    message.downcase.chars.map do |letter|
       if @alphabet.include?(letter)
-        @alphabet.find_index(letter.downcase)
+        @alphabet.find_index(letter)
       else
         letter
       end
@@ -57,6 +68,10 @@ class Enigma
         @alphabet[index]
       end
     end
+  end
+
+  def negative_array(array)
+    array.map {|i| i * -1}
   end
 
 end

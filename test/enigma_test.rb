@@ -38,12 +38,12 @@ class EnigmaTest < Minitest::Test
     enigma = Enigma.new
     enigma.encrypt("Hello world!","1234", "120918")
 
-    assert_equal "hnqtriawuui!", enigma.encrypted_message
+    assert_equal "knqtriawuui!", enigma.encrypted_message
   end
 
   def test_it_can_decyrpt_a_message
     enigma = Enigma.new
-    enigma.decrypt("hnqtriawuui!","1234", "120918")
+    enigma.decrypt("knqtriawuui!","1234", "120918")
 
     assert_equal "hello world!", enigma.decrypted_message
   end
