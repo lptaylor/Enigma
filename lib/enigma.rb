@@ -8,6 +8,7 @@ class Enigma
     @shift_array = Array.new
     @alphabet = ("a".."z").to_a << " "
     @encrypted_message = ""
+    @decrypted_message = ""
   end
 
   def encrypt(message, key = "", date = Date.today.strftime('%d%m%y'))
