@@ -1,11 +1,15 @@
 require './lib/enigma'
 
 message, encrypted = ARGV
-
-message = File.new('r')
-encrypted = File.new('w')
-
+message = File.open(message, 'r')
+encrypted = File.new(encrypted, 'w')
 enigma = Enigma.new
-enigma.encrypt(message)
+key = Key.new.make_base_array.join
+date = Date.today.strftime('%d%m%y')
+File.foreach(message) do |line|
+  encrypt = enigma.encrypt(line, key, date)
+  encrypted.puts(encrypt[:encryption])
+end
 
-p "Created 'encrypted.txt' with the key #{encrypt[:key]} and #{encrypt[:date]}"
+
+p "Created 'encrypted.txt' with the key #{key} and #{date}"

@@ -22,7 +22,7 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encyrpt_a_message_with_only_key
     enigma = Enigma.new
-    actual = enigma.encrypt("Hello world!", "1232")
+    actual = enigma.encrypt("Hello world!", "12324")
 
     assert_equal 12, actual[:encryption].length
   end
@@ -36,16 +36,16 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encyrpt_a_message_with_both_date_and_key
     enigma = Enigma.new
-    expected = {:encryption=>"knqtriawuui!", :key=>"1234", :date=>"120918"}
-    actual = enigma.encrypt("Hello world!","1234", "120918")
+    expected = {:encryption=>"vhufbceieom!", :key=>"12344", :date=>"120918"}
+    actual = enigma.encrypt("Hello world!","12344", "120918")
 
     assert_equal expected, actual
   end
 
   def test_it_can_decyrpt_a_message
     enigma = Enigma.new
-    expected = {:decryption=>"hello world!", :key=>"1234", :date=>"120918"}
-    actual = enigma.decrypt("knqtriawuui!","1234", "120918")
+    expected = {:decryption=>"hello world!", :key=>"12344", :date=>"120918"}
+    actual = enigma.decrypt("vhufbceieom!","12344", "120918")
     assert_equal expected, actual
   end
 end
