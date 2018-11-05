@@ -1,10 +1,6 @@
 class Key
   attr_reader :key_array
 
-  def initialize
-    @key_array = Array.new
-  end
-
   def generate
     base_array = Array.new
     until base_array.length == 5

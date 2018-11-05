@@ -3,7 +3,6 @@ class Offset
 
   def initialize(date)
     @date = date
-    @offset_array = Array.new
   end
 
   def get_squared_array
