@@ -11,7 +11,7 @@ class Key
     key_array_with_extra = interm_key_array.map do |num|
       num.join.to_i
     end
-    @key_array = key_array_with_extra[0..3]
+    key_array_with_extra[0..3]
   end
 
 end
