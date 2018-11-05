@@ -15,7 +15,7 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encyrpt_a_message_with_no_supplied_key_or_offset
     enigma = Enigma.new
-
+    enigma.encrypt("Hello world!")
     assert_equal "", enigma.encrypted
   end
 
