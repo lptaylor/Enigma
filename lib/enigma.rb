@@ -2,10 +2,12 @@ require 'date'
 require './lib/shifter'
 
 class Enigma
+  attr_reader :encrypted_message
 
   def initialize
     @shift_array = Array.new
     @alphabet = ("a".."z").to_a << " "
+    @encrypted_message = ""
   end
 
   def encrypt(message, key = "", date = Date.today.strftime('%d%m%y'))
@@ -39,8 +41,7 @@ class Enigma
         @alphabet[index]
       end
     end
-    encrypted.join
-    require 'pry';binding.pry
+    @encrypted_message = encrypted.join
   end
 
 
