@@ -24,9 +24,10 @@ class Shifter
     offset.offset_array
   end
 
-  def get_shift_array
-    key_array = get_key_array
-    offset_array = get_offset_array
+  def self.get_shift_array(key, date)
+    shifter = Shifter.new(key, date)
+    key_array = shifter.get_key_array
+    offset_array = shifter.get_offset_array
     combined_array = key_array.zip(offset_array)
     combined_array.map {|nums| nums.sum}
   end
