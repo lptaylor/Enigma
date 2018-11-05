@@ -1,11 +1,11 @@
 require './lib/key'
 require './lib/offset'
-require 'date'
 
 class Shifter
-  attr_reader :shift_array,:key_array, :offset_array
+  attr_reader :shift_array
 
-  def initialize(date = Date.today.strftime('%d%m%y'))
+  def initialize(key = "", date)
+    @key = key
     @date = date
     @offset_array = Array.new
     @key_array = Array.new
@@ -13,9 +13,13 @@ class Shifter
   end
 
   def get_key_array
-    key = Key.new
-    key.generate
-    @key_array = key.key_array
+    if @key.length != 4
+      key = Key.new
+      key.generate
+      @key_array = key.key_array
+    else
+      @key_array = @key.split(//).map(&:to_i)
+    end
   end
 
   def get_offset_array
