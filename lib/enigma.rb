@@ -15,7 +15,7 @@ class Enigma
     message_indexed = message.chars.map do |letter|
                         @alphabet.find_index(letter.downcase)
                       end
-    message_indexed
+    combined_array = message_indexed.zip(@shift_array.cycle)
   end
 
 
