@@ -17,13 +17,7 @@ class Enigma
     combined_array = message_indexed.zip(@shift_array.cycle)
     #clean array of mismatched classes
     clean_combined_array(combined_array)
-    summed_indexs = combined_array.map do |indexs|
-      if indexs[0].class == String
-        indexs
-      else
-        (indexs.sum) % 27
-      end
-    end
+    summed_indexs = sum_combined_array(combined_array)
     encrypted = summed_indexs.flatten.map do |index|
       if index.class == String
         index
@@ -52,5 +46,14 @@ class Enigma
     end
   end
 
+  def sum_combined_array(combined_array)
+    combined_array.map do |indexs|
+      if indexs[0].class == String
+        indexs
+      else
+        (indexs.sum) % 27
+      end
+    end
+  end
 
 end
