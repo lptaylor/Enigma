@@ -2,34 +2,30 @@ require 'date'
 require './lib/shifter'
 
 class Enigma
-  attr_reader :encrypted_message, :decrypted_message
 
   def initialize
-    @shift_array = Array.new
     @alphabet = ("a".."z").to_a << " "
-    @encrypted_message = ""
-    @decrypted_message = ""
   end
 
   def encrypt(message, key = "", date = Date.today.strftime('%d%m%y'))
-    shifter = Shifter.new(key, date)
-    @shift_array = shifter.get_shift_array
+    shift_array = Shifter.get_shift_array(key, date)
     message_indexed = assign_index_for_message(message)
-    combined_array = message_indexed.zip(@shift_array.cycle)
+    combined_array = message_indexed.zip(shift_array.cycle)
     clean_combined_array(combined_array)
     summed_indexs = sum_combined_array(combined_array)
-    @encrypted_message = remap_array_to_message(summed_indexs).join
+    encrypted_message = remap_array_to_message(summed_indexs).join
+    {encryption: encrypted_message, key: key, date: date}
   end
 
   def decrypt(message, key, date)
-    shifter = Shifter.new(key, date)
-    shift_array = shifter.get_shift_array
-    @shift_array = negative_array(shift_array)
+    shift_array = Shifter.get_shift_array(key, date)
+    neg_shift_array = negative_array(shift_array)
     message_indexed = assign_index_for_message(message)
-    combined_array = message_indexed.zip(@shift_array.cycle)
+    combined_array = message_indexed.zip(neg_shift_array.cycle)
     clean_combined_array(combined_array)
     summed_indexs = sum_combined_array(combined_array)
-    @decrypted_message = remap_array_to_message(summed_indexs).join
+    decrypted_message = remap_array_to_message(summed_indexs).join
+    {decryption: decrypted_message, key: key, date: date}
   end
 
   def assign_index_for_message(message)
@@ -73,5 +69,4 @@ class Enigma
   def negative_array(array)
     array.map {|i| i * -1}
   end
-
 end

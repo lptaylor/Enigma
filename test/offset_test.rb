@@ -5,7 +5,7 @@ require './lib/offset'
 class OffsetTest < Minitest::Test
 
   def test_it_exists
-    offset = Offset.new
+    offset = Offset.new("040318")
 
     assert_instance_of Offset, offset
   end
@@ -14,12 +14,6 @@ class OffsetTest < Minitest::Test
     offset = Offset.new("041018")
 
     assert_equal "041018", offset.date
-  end
-
-  def test_it_defalts_to_todays_date
-    offset = Offset.new
-
-    assert_equal Date.today.strftime('%d%m%y'), offset.date
   end
 
   def test_it_can_generate_the_offset

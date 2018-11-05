@@ -14,10 +14,10 @@ class KeyTest < Minitest::Test
 
   def test_it_has_a_method_that_will_generate_a_number
     key = Key.new
-    key.generate
+    actual = key.generate
 
-    assert_instance_of Integer, key.key_array[0]
-    assert_instance_of Integer, key.key_array[3]
+    assert_instance_of Integer, actual[0]
+    assert_instance_of Integer, actual[3]
   end
 
 end
