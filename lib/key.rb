@@ -3,12 +3,8 @@ class Key
 
   def generate
     base_array = make_base_array
-    combined_array = base_array.zip(base_array[1..4])
-    interm_key_array = combined_array[0..4]
-    key_array_with_extra = interm_key_array.map do |num|
-      num.join.to_i
-    end
-    key_array_with_extra[0..3]
+    interm_key_array = combine_array(base_array)
+    cut_down_array(interm_key_array)
   end
 
   def make_base_array
@@ -18,5 +14,16 @@ class Key
     end
     base_array
   end
+
+  def combine_array(base_array)
+    base_array.zip(base_array[1..4])
+  end
+
+  def cut_down_array(interm_key_array)
+    interm_key_array.map do |num|
+      num.join.to_i
+    end[0..3]
+  end
+
 
 end
