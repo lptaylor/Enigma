@@ -10,11 +10,15 @@ class Shifter
   end
 
   def get_key_array
-    if @key.length != 4
+    if @key.length != 5
       key = Key.new
       key.generate
     else
-      @key.split(//).map(&:to_i)
+      key_base = []
+      4.times do |i|
+        key_base << @key[i..i+1]
+      end
+      key_base.map {|i| i.to_i}
     end
   end
 

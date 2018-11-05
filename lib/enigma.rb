@@ -58,7 +58,7 @@ class Enigma
 
   def remap_array_to_message(summed_indexs)
     summed_indexs.flatten.map do |index|
-      if index.class == String
+      if index.is_a?(String)
         index
       else
         @alphabet[index]
