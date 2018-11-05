@@ -13,37 +13,49 @@ class Enigma
   def encrypt(message, key = "", date = Date.today.strftime('%d%m%y'))
     shifter = Shifter.new(key, date)
     @shift_array = shifter.get_shift_array
-    message_indexed = message.chars.map do |letter|
-                      if @alphabet.include?(letter)
-                        @alphabet.find_index(letter.downcase)
-                      else
-                        letter
-                      end
-                    end
+    message_indexed = assign_index_for_message(message)
     combined_array = message_indexed.zip(@shift_array.cycle)
-    #clean array of mismatched classes
+    clean_combined_array(combined_array)
+    summed_indexs = sum_combined_array(combined_array)
+    @encrypted_message = remap_array_to_message(summed_indexs).join
+  end
+
+  def assign_index_for_message(message)
+    message.chars.map do |letter|
+      if @alphabet.include?(letter)
+        @alphabet.find_index(letter.downcase)
+      else
+        letter
+      end
+    end
+  end
+
+  def clean_combined_array(combined_array)
     combined_array.map do |element|
-      if element[0].class == String
+      if element[0].is_a?(String)
         element.delete_at(1)
       end
     end
-    summed_indexs = combined_array.map do |indexs|
-      if indexs[0].class == String
+  end
+
+  def sum_combined_array(combined_array)
+    combined_array.map do |indexs|
+      if indexs[0].is_a?(String)
         indexs
       else
         (indexs.sum) % 27
       end
     end
-    encrypted = summed_indexs.flatten.map do |index|
+  end
+
+  def remap_array_to_message(summed_indexs)
+    summed_indexs.flatten.map do |index|
       if index.class == String
         index
       else
         @alphabet[index]
       end
     end
-    @encrypted_message = encrypted.join
   end
-
-
 
 end
