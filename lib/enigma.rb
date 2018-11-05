@@ -69,5 +69,4 @@ class Enigma
   def negative_array(array)
     array.map {|i| i * -1}
   end
-
 end
