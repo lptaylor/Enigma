@@ -19,10 +19,4 @@ class EnigmaTest < Minitest::Test
     assert_equal "", enigma.encrypted
   end
 
-  def test_it_can_shift_the_alphabet
-    enigma = Enigma.new
-    enigma.shift_alphabet
-
-    assert_equal "bdf", enigma.shifted_alphabet[0..2].join
-  end
 end

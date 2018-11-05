@@ -6,6 +6,7 @@ class Enigma
   def initialize
     @shift_array = Array.new
     @alphabet = ("a".."z").to_a << " "
+    @shifted_alphabet = Array.new
   end
 
   def encrypt(message, key, date = Date.today.strftime('%d%m%y'))
@@ -16,6 +17,7 @@ class Enigma
                       end
     message_indexed
   end
+
 
 
 end
