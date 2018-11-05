@@ -8,6 +8,7 @@ class Enigma
     @shift_array = Array.new
     @alphabet = ("a".."z").to_a << " "
     @encrypted_message = ""
+    @decrypted_message = ""
   end
 
   def encrypt(message, key = "", date = Date.today.strftime('%d%m%y'))
@@ -17,7 +18,7 @@ class Enigma
     combined_array = message_indexed.zip(@shift_array.cycle)
     clean_combined_array(combined_array)
     summed_indexs = sum_combined_array(combined_array)
-    @encrypted_message = remap_array_to_message(summed_indexs).join
+    @encrypted_message = remap_array_to_message(summed_indexs).join.downcase
   end
 
   def assign_index_for_message(message)

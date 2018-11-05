@@ -13,10 +13,38 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, enigma
   end
 
-  def test_it_can_encyrpt_a_message_with_no_supplied_key_or_offset
+  def test_it_can_encyrpt_a_message_with_no_supplied_key_or_date
     enigma = Enigma.new
     enigma.encrypt("Hello world!")
-    assert_equal "hello", enigma.encrypted_message
+
+    assert_equal 12, enigma.encrypted_message.length
   end
 
+  def test_it_can_encyrpt_a_message_with_only_key
+    enigma = Enigma.new
+    enigma.encrypt("Hello world!", "1232")
+
+    assert_equal 12, enigma.encrypted_message.length
+  end
+
+  def test_it_can_encyrpt_a_message_with_only_date
+    enigma = Enigma.new
+    enigma.encrypt("Hello world!", "120918")
+
+    assert_equal 12, enigma.encrypted_message.length
+  end
+
+  def test_it_can_encyrpt_a_message_with_both_date_and_key
+    enigma = Enigma.new
+    enigma.encrypt("Hello world!","1234", "120918")
+
+    assert_equal "hnqtriawuui!", enigma.encrypted_message
+  end
+
+  def test_it_can_decyrpt_a_message
+    enigma = Enigma.new
+    enigma.decrypt("hnqtriawuui!","1234", "120918")
+
+    assert_equal "hello world!", enigma.decrypted_message
+  end
 end
