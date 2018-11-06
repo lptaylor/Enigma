@@ -48,4 +48,17 @@ class EnigmaTest < Minitest::Test
     actual = enigma.decrypt("vhufbceieom!","12344", "120918")
     assert_equal expected, actual
   end
+
+  def test_it_can_assign_a_messages_letters_to_index
+    enigma = Enigma.new
+
+    assert_equal [7,4,11,11,14], enigma.assign_index_for_message("hello")
+  end
+
+  def test_it_can_clean_a_combined_array
+    enigma = Enigma.new
+    array = [[1,2],[4,5],["?",5] ]
+
+    assert_equal [nil,nil,5], enigma.clean_combined_array(array)
+  end
 end
