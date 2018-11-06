@@ -77,4 +77,11 @@ class EnigmaTest < Minitest::Test
     assert_equal ['d','j','?'], enigma.remap_array_to_message(array)
   end
 
+  def test_negative_array_returns_a_negative_array
+    enigma = Enigma.new
+    array = [1,2,3,4]
+
+    assert_equal [-1,-2,-3,-4], enigma.negative_array(array)
+  end
+
 end
