@@ -22,6 +22,13 @@ class OffsetTest < Minitest::Test
     offset = Offset.new("041018")
     offset.generate
 
-    assert_equal [6,3,2,4], offset.offset_array
+    assert_equal [6,3,2,4], offset.generate
+  end
+
+  def test_it_can_get_a_array_from_a_squared_num
+    offset = Offset.new("041018")
+    expected = ["1", "6", "8", "2", "4", "7", "6", "3", "2", "4"]
+
+    assert_equal expected, offset.get_squared_array
   end
 end
