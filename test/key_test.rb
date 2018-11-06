@@ -34,4 +34,11 @@ class KeyTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_cut_down_array_puts_out_correctly
+    key = Key.new
+    array = [[1,2],[2,3],[3,4],[4,5],[5,nil]]
+
+    assert_equal [12,23,34,45],key.cut_down_array(array)
+  end
+
 end
