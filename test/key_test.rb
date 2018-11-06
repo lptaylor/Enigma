@@ -20,4 +20,18 @@ class KeyTest < Minitest::Test
     assert_instance_of Integer, actual[3]
   end
 
+  def test_make_base_array_makes_a_five_digit_base
+    key = Key.new
+    actual = key.make_base_array
+
+    assert_equal 5, actual.count
+  end
+
+  def test_combine_array_will_output_correctly
+    key = Key.new
+    expected = [[1,2],[2,3],[3,4],[4,5],[5,nil]]
+    actual = key.combine_array([1,2,3,4,5])
+    assert_equal expected, actual
+  end
+
 end
