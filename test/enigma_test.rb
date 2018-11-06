@@ -60,5 +60,21 @@ class EnigmaTest < Minitest::Test
     array = [[1,2],[4,5],["?",5] ]
 
     assert_equal [nil,nil,5], enigma.clean_combined_array(array)
+    assert_equal [[1, 2], [4, 5], ["?"]], array
   end
+
+  def test_it_can_sum_combined_array
+    enigma = Enigma.new
+    array = [[1, 2], [4, 5], ["?"]]
+
+    assert_equal [3,9,["?"]], enigma.sum_combined_array(array)
+  end
+
+  def test_it_can_remap_an_array_to_message
+    enigma = Enigma.new
+    array = [3,9,["?"]]
+
+    assert_equal ['d','j','?'], enigma.remap_array_to_message(array)
+  end
+
 end
