@@ -12,5 +12,4 @@ end
 
 decrypted.close
 
-# "Created 'encrypted.txt' with the key 91383 and 051118"
 p "Created 'decrypted.txt' with the key #{key} and #{date}"
