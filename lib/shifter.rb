@@ -10,15 +10,11 @@ class Shifter
   end
 
   def get_key_array(key)
-    if key.length != 5
-      Key.new.generate
-    else
-      key_base = []
-      4.times do |i|
-        key_base << key[i..i+1]
-      end
-      key_base.map {|i| i.to_i}
+    key_base = []
+    4.times do |i|
+      key_base << key[i..i+1]
     end
+    key_base.map {|i| i.to_i}
   end
 
   def get_offset_array(date)
