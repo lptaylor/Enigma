@@ -8,6 +8,7 @@ class Enigma
   end
 
   def encrypt(message, key = "", date = Date.today.strftime('%d%m%y'))
+    key = key_check(key)
     shift_array = Shifter.get_shift_array(key, date)
     message_indexed = assign_index_for_message(message)
     combined_array = message_indexed.zip(shift_array.cycle)
@@ -69,4 +70,14 @@ class Enigma
   def negative_array(array)
     array.map {|i| i * -1}
   end
+
+  def key_check(key)
+    if key.length !=5
+      puts "Key of incorrect size. New key will be supplied!"
+      key = Key.new.make_base_array.join
+    else
+      key
+    end
+  end
+
 end
