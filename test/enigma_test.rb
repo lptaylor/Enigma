@@ -42,6 +42,13 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_it_can_decyrpt_a_message_without_a_date
+    enigma = Enigma.new
+    expected = {:decryption=>"acllhywokjd!", :key=>"12344", :date=>"071118"}
+    actual = enigma.decrypt("vhufbceieom!","12344")
+    assert_equal expected, actual
+  end
+
   def test_it_can_assign_a_messages_letters_to_index
     enigma = Enigma.new
 
