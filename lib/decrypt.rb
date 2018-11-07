@@ -1,9 +1,11 @@
 require './lib/enigma'
+require 'date'
 
-encrypted, decrypted, key, date = ARGV
-encrypted = File.open(encrypted, 'r')
-decrypted = File.new(decrypted, 'w')
+initial, output, key, date = ARGV
+encrypted = File.open(initial, 'r')
+decrypted = File.new(output, 'w')
 enigma = Enigma.new
+date = Date.today.strftime('%d%m%y')
 
 File.foreach(encrypted) do |line|
   decrypt = enigma.decrypt(line, key, date)
@@ -12,4 +14,4 @@ end
 
 decrypted.close
 
-p "Created 'decrypted.txt' with the key #{key} and #{date}"
+p "Created #{output} with the key #{key} and #{date}"

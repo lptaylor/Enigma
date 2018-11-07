@@ -17,7 +17,7 @@ class Enigma
     {encryption: encrypted_message, key: key, date: date}
   end
 
-  def decrypt(message, key, date)
+  def decrypt(message, key, date = Date.today.strftime('%d%m%y'))
     shift_array = Shifter.get_shift_array(key, date)
     neg_shift_array = negative_array(shift_array)
     message_indexed = assign_index_for_message(message)
